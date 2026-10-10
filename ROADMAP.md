@@ -101,7 +101,7 @@ never requirements. See [ADR 0001](docs/decisions/0001-repository-layout.md).
 - [ ] **P1-E3** Expose a minimal native API reporting the active patch number
 
 ### Updater
-- [ ] **P1-U1** Persist `PatchState` to app storage (atomic write, versioned format)
+- [x] **P1-U1** Persist `PatchState` to app storage (atomic write, versioned format)
 - [ ] **P1-U2** Check on cold start, off the main thread (app id, release version, platform, arch, channel, current patch, install id)
 - [ ] **P1-U3** Download the full patched snapshot (no diffing yet)
 - [ ] **P1-U4** Verify SHA-256 against the check response
@@ -244,4 +244,4 @@ Each one closes with an ADR in `docs/decisions/`.
 3. Phase 4 (iOS)
 4. Phase 5, then Phase 6 continuously
 
-**Next up:** first green run of the engine CI job (P0-9), then P0-3 and P0-4; Phase 1 server work (P1-S1 to P1-S5) is done; P1-U1 to P1-U5 and P1-C1 are next and need no engine checkout.
+**Next up:** first green run of the engine CI job (P0-9), then P0-3 and P0-4; Phase 1 server work (P1-S1 to P1-S5) is done; P1-U1 is done; P1-U2 to P1-U5 and P1-C1 are next and need no engine checkout.

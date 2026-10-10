@@ -10,7 +10,7 @@ pub enum BootTarget {
 }
 
 /// Persisted per-release state.
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
 pub struct PatchState {
     /// Patch staged and verified, waiting for the next cold start.
     pub next_patch: Option<u32>,

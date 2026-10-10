@@ -7,6 +7,7 @@
 //! snapshot to load. Everything else runs off the startup path.
 
 pub mod state;
+pub mod store;
 
 pub mod ffi {
     //! C ABI consumed by the engine fork. Kept tiny on purpose.
