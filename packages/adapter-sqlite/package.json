@@ -1,0 +1,14 @@
+{
+  "name": "@fota/adapter-sqlite",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@fota/protocol": "workspace:*",
+    "@fota/server": "workspace:*"
+  }
+}

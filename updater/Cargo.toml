@@ -1,0 +1,20 @@
+[package]
+name = "fota-updater"
+version = "0.0.0"
+edition = "2021"
+publish = false
+license = "MIT"
+description = "On-device updater: check, download, verify, stage, apply and roll back patches."
+
+[lib]
+# staticlib for linking into the engine / iOS, cdylib for Android loading via JNI/FFI.
+crate-type = ["lib", "staticlib", "cdylib"]
+
+[dependencies]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

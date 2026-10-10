@@ -1,0 +1,24 @@
+{
+  "name": "fota",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:server": "FOTA_API_KEYS=dev bun --watch packages/server/src/main.ts",
+    "cli": "bun packages/cli/src/main.ts",
+    "test": "bun test",
+    "typecheck": "tsc",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "commitlint": "bun scripts/commit-lint.ts",
+    "hooks:install": "bun scripts/install-hooks.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@types/bun": "latest",
+    "typescript": "^5.9.0"
+  }
+}
