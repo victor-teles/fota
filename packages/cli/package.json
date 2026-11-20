@@ -1,0 +1,16 @@
+{
+  "name": "@fota/cli",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "fota": "./src/main.ts"
+  },
+  "scripts": {
+    "build": "bun build src/main.ts --compile --outfile dist/fota"
+  },
+  "dependencies": {
+    "@fota/protocol": "workspace:*"
+  }
+}

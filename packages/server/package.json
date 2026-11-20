@@ -1,0 +1,23 @@
+{
+  "name": "@fota/server",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./adapters/memory": "./src/adapters/memory.ts",
+    "./testing": "./src/testing.ts"
+  },
+  "scripts": {
+    "dev": "bun --watch src/main.ts",
+    "start": "bun src/main.ts"
+  },
+  "dependencies": {
+    "@fota/protocol": "workspace:*"
+  },
+  "devDependencies": {
+    "@fota/adapter-fs": "workspace:*",
+    "@fota/adapter-sqlite": "workspace:*"
+  }
+}

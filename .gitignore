@@ -1,0 +1,31 @@
+# JS / Bun
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Rust
+updater/target/
+
+# Dart / Flutter
+.dart_tool/
+.packages
+pubspec.lock
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Engine checkout and tools (see engine/README.md)
+engine/checkout/
+engine/.depot_tools/
+
+# Local data / secrets
+.fota/
+*.pem
+*.key
+.env
+.env.*
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/

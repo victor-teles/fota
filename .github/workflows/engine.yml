@@ -1,0 +1,53 @@
+name: engine
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["engine/**", ".github/workflows/engine.yml"]
+  pull_request:
+    paths: ["engine/**", ".github/workflows/engine.yml"]
+
+concurrency:
+  group: engine-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: shellcheck -x engine/scripts/*.sh
+
+  android-arm64:
+    needs: scripts
+    if: github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'engine-build')
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      FOTA_FLUTTER_DIR: /mnt/fota/flutter
+    steps:
+      - uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: true
+      - uses: actions/checkout@v4
+      - name: Prepare work dir
+        run: sudo mkdir -p /mnt/fota && sudo chown "$USER" /mnt/fota && df -h / /mnt
+      - name: Sync
+        run: engine/scripts/sync.sh
+      - name: Build
+        run: engine/scripts/build.sh android-arm64
+      - name: Collect artifacts
+        run: |
+          out="$FOTA_FLUTTER_DIR/engine/src/out/android_release_arm64"
+          mkdir -p artifacts
+          cp "$out/libflutter.so" "$out/flutter.jar" artifacts/ 2>/dev/null || true
+          cp "$out"/clang_x64/gen_snapshot artifacts/ 2>/dev/null || true
+          ls -la artifacts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: engine-android-release-arm64
+          path: artifacts/
+          retention-days: 14
